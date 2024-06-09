@@ -1,0 +1,38 @@
+{%extends 'layout.html' %}
+{% load static %}
+
+{%block title_block %}
+Books
+{%endblock%}
+
+
+{%block body_block %}
+<h1>Our Books</h1>
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Author</th>
+            {% if request.user.is_authenticated %}
+            <th>Borrowed</th>
+            {% endif %}
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td><img src="{% static book.picture %}" alt="{{ book.title }}" width="50" height="50"></td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.category.name }}</td>
+            <td>{{book.author}}</td>
+            {% if request.user.is_authenticated %}
+            {%if book.is_borrowed%}
+            <td><button disabled="disabled">Borrowed</button></td>
+            {%else%}
+            <td><button onclick="location.href='borrowe/{{book.id}}'">Borrow</button></td>
+            {% endif %}
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+{%endblock%}
+

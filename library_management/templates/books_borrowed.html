@@ -1,0 +1,32 @@
+{%extends 'layout.html' %}
+{% load static %}
+
+{%block title_block %}
+borrowed_book
+{%endblock%}
+
+
+{%block body_block %}
+<h1>Hellow Dear {{user.user}}!!</h1>
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Return</th>
+
+        </tr>
+        {% for borrowed_book in borrowed %}
+        <tr>
+            <td><img src="{% static borrowed_book.book.picture %}" alt="{{ borrowed_book.book.title }}" width="50" height="50"></td>
+            <td>{{ borrowed_book.book.title }}</td>
+            <td>{{ borrowed_book.book.category.name }}</td>
+            <td>{{borrowed_book.book.author}}</td>
+            <td><button onclick="location.href='return/{{borrowed_book.id}}'">Return</button></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+{%endblock%}
+

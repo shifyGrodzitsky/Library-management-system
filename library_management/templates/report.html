@@ -1,0 +1,33 @@
+{%extends 'layout.html' %}
+{% load static %}
+
+{%block title_block %}
+Report
+{%endblock%}
+
+
+{%block body_block %}
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>User Name</th>
+            <th>Borrowing Date</th>
+
+        </tr>
+        {% for borrowed_book in overdue_books %}
+        <tr>
+            <td><img src="{% static borrowed_book.book.picture %}" alt="{{ borrowed_book.book.title }}" width="50" height="50"></td>
+            <td>{{ borrowed_book.book.title }}</td>
+            <td>{{ borrowed_book.book.category.name }}</td>
+            <td>{{borrowed_book.book.author}}</td>
+            <td>{{borrowed_book.user.user}}</td>
+            <td>{{borrowed_book.borrow_date}}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+{%endblock%}
+

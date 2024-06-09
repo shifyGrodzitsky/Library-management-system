@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>
+        {%block title_block %}
+        {%endblock%}
+    </title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<style>
+   .container {
+        display: flex;
+        align-items: center;
+
+   }
+</style>
+</head>
+<body>
+
+<div class="container">
+<img src="{% static 'book_pictures/11012024164415A.png' %}" width="70" height="70" alt="{{ book.title }}" >
+<h1  margin-right="10px">Welcome to our Library</h1>
+</div>
+{%include 'ToolBar.html' %}
+{%block body_block %}
+<h3>From Layout</h3>
+{%endblock%}
+</body>
+</html>
